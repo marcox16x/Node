@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container mt-4">
+    <h1 class="mb-3">{{ titulo }}</h1>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Edad</th>
+          <th>Créditos</th>
+          <th>Estado matricula</th>
+          <th>Estado Edad</th>
+          <th>Nota</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- *ngFor: directiva estructural que repite una fila por estudiante -->
+        <tr *ngFor="let e of estudiantes">
+          <td>{{ e.nombre }}</td>
+          <td>{{ e.edad }}</td>
+          <td>{{ e.creditos }}</td>
+          
+          
+          <td>
+            <!-- [class...]: directiva de atributo que cambia el estilo según el estado -->
+            <span
+              class="badge"
+              [class.bg-success]="estado(e.creditos) === 'Matriculado'"
+              [class.bg-secondary]="estado(e.creditos) !== 'Matriculado'"
+            >
+              {{ estado(e.creditos) }}
+            </span>
+          </td>
+          <td>
+            <span
+              class="badge"
+              [class.bg-success]="estadoEdad(e.edad) === 'Mayor de edad'"
+              [class.bg-secondary]="estadoEdad(e.edad) !== 'Mayor de edad'"
+            >
+              {{ estadoEdad(e.edad) }}
+            </span>
+          </td>
+          <td>{{ e.nota }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>
